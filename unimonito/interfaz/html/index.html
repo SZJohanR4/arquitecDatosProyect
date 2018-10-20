@@ -5,8 +5,11 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../css/style.css">
-
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/jquery-slim.min.js'%}"></script>
     <title>Control Unimonito</title>
   </head>
 
@@ -24,10 +27,10 @@
               <a class="nav-link" href="franquicias">Franquicias</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="Red">Usuarios</a>
+              <a class="nav-link" href="usuarios">Usuarios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Productos</a>
+              <a class="nav-link" href="productos">Productos</a>
             </li>
             <li class="nav-item">
               <div class="dropdown">
@@ -47,9 +50,6 @@
           </ul>
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="#">Sucursal Selected</a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" href="#">Login</a>
               </li>
             </ul>
@@ -59,14 +59,14 @@
     <div class="modal hide" id="myModal">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">x</button>
-            <h3>Login to MyWebsite.com</h3>
+            <h3>Ingreso Empleado</h3>
           </div>
           <div class="modal-body">
             <form method="post" action='' name="login_form">
-              <p><input type="text" class="span3" name="eid" id="email" placeholder="Email"></p>
-              <p><input type="password" class="span3" name="passwd" placeholder="Password"></p>
+              {% csrf_token %}
+                       {{form.user_name}}
+                       {{form.password}}
               <p><button type="submit" class="btn btn-primary">Sign in</button>
-                <a href="#">Forgot Password?</a>
               </p>
             </form>
           </div>
@@ -85,15 +85,12 @@
         </div>
       </div>
       <br>
-      {% csrf_token %}
-               {{form.user_name}}
-               {{form.password}}
       <div class="container">
         <!-- Example row of columns -->
         <div class="row">
           <div class="col-md-4">
             <div class="card border-light mb-3 text-center"  style="width: 18rem;">
-              <img class="card-img-top" src="../imgs/productos.jpg" alt="Logo ">
+              <img class="card-img-top" src="{% static 'imgs/productos.jpg' %}" alt="Logo ">
               <div class="card-body">
                 <h2 class="card-title">Productos</h2>
                 <p class="card-text">Productos de calidad con el mejro sazon al mejor precio y con el mejor gusto.</p>
@@ -102,7 +99,7 @@
           </div>
           <div class="col-md-4">
             <div class="card border-light mb-3 text-center" style="width: 18rem;">
-              <img class="card-img-top" src="../imgs/usuarios.jpg" alt="Logo Uniminuto">
+              <img class="card-img-top" src="{% static 'imgs/usuarios.jpg' %}" alt="Logo Uniminuto">
               <div class="card-body">
                 <h2 class="card-title">Usuarios</h2>
                 <p class="card-text">Gestion de los empleados dependiendo a la sucursal en la cual se encuentren registrados</p>
@@ -111,7 +108,7 @@
           </div>
           <div class="col-md-4">
             <div class="card border-light mb-3 text-center" style="width: 18rem;">
-              <img class="card-img-top" src="../imgs/franquicias.jpg" alt="Logo Semillero">
+              <img class="card-img-top" src="{% static 'imgs/franquicias.jpg' %}" alt="Logo Semillero">
               <div class="card-body">
                 <h2 class="card-title">Franquicias</h2>
                 <p class="card-text">conslta cada una de nuestras franquicias a nivel nacional y con que productos y empleados cuentan</p>
@@ -136,10 +133,5 @@
          </footer>
       </div> <!-- /container -->
     </main>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
   </body>
 </html>

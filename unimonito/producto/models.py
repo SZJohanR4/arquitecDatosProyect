@@ -1,11 +1,11 @@
 from django.db import models
-from franquicias.models import Franquicia
+from franquicias.models import Franquicias
 from usuario.models import Clientes
 
 
 # Create your models here.
 class Productos(models.Model):
-    Nombre=models.OneToOneField(User, on_delete=models.CASCADE)
+    Nombre=models.CharField(max_length=50)
     Fecha_Compra=models.CharField(max_length=50)
     Fecha_Consumo=models.CharField(max_length=50)
     Observacion=models.CharField(max_length=50)
@@ -16,7 +16,7 @@ class Productos(models.Model):
         return self.Nombre
 
 class Tipos(models.Model):
-    Nombre=models.OneToOneField(User, on_delete=models.CASCADE)
+    Nombre=models.CharField(max_length=50)
     Descripcion=models.CharField(max_length=50)
     Fecha_Caducidad=models.CharField(max_length=50)
     Ingredientes=models.CharField(max_length=50)

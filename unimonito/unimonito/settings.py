@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     'usuario.middleware.replicacion',
 ]
 
 ROOT_URLCONF = 'unimonito.urls'
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'unimonito.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'interfaz/html'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,14 +80,22 @@ WSGI_APPLICATION = 'unimonito.wsgi.application'
 DATABASES = {
 'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'unimonito',
+        'NAME': 'unimonitodb',
         'USER': 'postgres',
-        'PASSWORD': 'uniminuto',
+        'PASSWORD': 'maribel27',
         'HOST':'127.0.0.1',
         'PORT': 5432,
-    }
+    },
+'esclavo': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'unimonitodbBack',
+        'USER': 'postgres',
+        'PASSWORD': 'maribel27',
+        'HOST': '127.0.0.1',
+        'PORT': 5432,
+    },
 }
-
+DATABASE_ROUTERS = ['usuario.router.RouterBaseDatos']
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
