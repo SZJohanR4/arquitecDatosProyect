@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-     'usuario.middleware.replicacion',
+     
 ]
 
 ROOT_URLCONF = 'unimonito.urls'
@@ -86,7 +86,7 @@ DATABASES = {
         'HOST':'127.0.0.1',
         'PORT': 5432,
     },
-'esclavo': {
+'esclavo_db': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'unimonitodbBack',
         'USER': 'postgres',
@@ -95,7 +95,7 @@ DATABASES = {
         'PORT': 5432,
     },
 }
-DATABASE_ROUTERS = ['usuario.router.RouterBaseDatos']
+DATABASE_ROUTERS = ['usuario.router.db_midleware']
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
