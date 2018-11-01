@@ -14,7 +14,7 @@ class Empleados(models.Model):
     idFranquicia=models.ForeignKey(Franquicias, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.Nombre
+        return self.pk
 
 class Clientes(models.Model):
     Nombre=models.CharField(max_length=50)

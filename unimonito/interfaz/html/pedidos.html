@@ -96,6 +96,22 @@
             </div>
           </form>
         </div>
+        <div>
+          {% if productoList %}
+           {% for producto in productoList %}
+          <p> {{ producto.nombre }}</p>
+           {% endfor %}
+           {% endif %}
+
+           ____________________________
+
+           {% if recetasList > 0%}
+            {% for receta in recetasList %}
+            {{ receta.Nombre }}
+            {% endfor %}
+            {% endif %}
+        </div>
+
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
            <div class="row">
              <div class="col-6 col-md text-center">
