@@ -82,20 +82,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'unimonitodb',
         'USER': 'postgres',
-        'PASSWORD': 'maribel27',
+        'PASSWORD': 'uniminuto',
         'HOST':'127.0.0.1',
         'PORT': 5432,
     },
-'esclavo_db': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'unimonitodbBack',
-        'USER': 'postgres',
-        'PASSWORD': 'maribel27',
-        'HOST': '127.0.0.1',
-        'PORT': 5432,
-    },
 }
-DATABASE_ROUTERS = ['usuario.router.db_midleware']
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

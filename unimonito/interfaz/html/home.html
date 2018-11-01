@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script>
+    <script src="{% static 'js/jquery-slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <style media="screen">
+      #usernameP{
+        color: white;
+        font-size: 18px;
+        margin-right: 20px;
+        margin-top:5px;
+      }
+    </style>
+
+
+    <title>Control Unimonito</title>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Unimonito</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="franquicias">Franquicias</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="usuarios">Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="productos">Productos</a>
+            </li>
+            <li class="nav-item">
+              <div class="dropdown">
+              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                Sucursal
+              </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Valle</a>
+                    <a class="dropdown-item" href="#">Cauca</a>
+                    <a class="dropdown-item" href="#">Bogota</a>
+                    <a class="dropdown-item" href="#">Boyaca</a>
+                    <a class="dropdown-item" href="#">Antioquia</a>
+                    <a class="dropdown-item" href="#">Choco</a>
+                  </div>
+                </div>
+            </li>
+          </ul>
+            <ul class="navbar-nav ">
+              <li>
+              <p id="usernameP">Bienveido {{username}}</p>
+              </li>
+              <li class="nav-item">
+              <a class="btn btn-primary" href="LogOut" role="button">Log Out</a>
+              </li>
+            </ul>
+        </div>
+      </nav>
+    </header>
+    <main role="main">
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Unimonito</h1>
+          <p>Cadena de restaurantes a nivel nacional con diferentes sucursales ubicadas estrategicamente en diferentes localidades. donde puede elgir su producto a su gusto el cual almacenaremos para que lo consigas en cualquier lugar</p>
+          <a class="btn btn-primary btn-lg" href="pedidos" role="button">Iniciar >></a>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
+      <br>
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card border-light mb-3 text-center"  style="width: 18rem;">
+              <img class="card-img-top" src="{% static 'imgs/productos.jpg' %}" alt="Logo ">
+              <div class="card-body">
+                <h2 class="card-title">Productos</h2>
+                <p class="card-text">Productos de calidad con el mejro sazon al mejor precio y con el mejor gusto.</p>
+              </div>
+           </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card border-light mb-3 text-center" style="width: 18rem;">
+              <img class="card-img-top" src="{% static 'imgs/usuarios.jpg' %}" alt="Logo Uniminuto">
+              <div class="card-body">
+                <h2 class="card-title">Usuarios</h2>
+                <p class="card-text">Gestion de los empleados dependiendo a la sucursal en la cual se encuentren registrados</p>
+              </div>
+           </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card border-light mb-3 text-center" style="width: 18rem;">
+              <img class="card-img-top" src="{% static 'imgs/franquicias.jpg' %}" alt="Logo Semillero">
+              <div class="card-body">
+                <h2 class="card-title">Franquicias</h2>
+                <p class="card-text">conslta cada una de nuestras franquicias a nivel nacional y con que productos y empleados cuentan</p>
+              </div>
+           </div>
+          </div>
+        </div>
+
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+           <div class="row">
+             <div class="col-6 col-md text-center">
+               <h5>Documentacion</h5>
+               <ul class="list-unstyled text-small">
+                 <li><a class="text-muted" href="#">Diagramas</a></li>
+                 <li><a class="text-muted" href="#">Fragmentaciones</a></li>
+                 <li><a class="text-muted" href="#">Procesos</a></li>
+               </ul>
+             </div>
+           <div class="col-12 col-md text-center">
+             <small class="d-block mb-3 text-muted">&copy; Sebastian Urrea & Johan Sanchez</small>
+           </div>
+         </footer>
+      </div> <!-- /container -->
+    </main>
+    <script type="text/javascript">
+        function showModal() {
+            $("#myModal").modal('show');
+        }
+        function reloadPag() {
+            location.href = "/CsTool/cstool/Content/Construrama/Pagos.aspx";
+        }
+    </script>
+  </body>
+</html>

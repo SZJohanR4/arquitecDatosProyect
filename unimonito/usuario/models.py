@@ -17,7 +17,7 @@ class Empleados(models.Model):
         return self.Nombre
 
 class Clientes(models.Model):
-    Nombre=models.OneToOneField(User, on_delete=models.CASCADE)
+    Nombre=models.CharField(max_length=50)
     Cedula=models.CharField(max_length=50)
     Ciudad=models.CharField(max_length=50)
 

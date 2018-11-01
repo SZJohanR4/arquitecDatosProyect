@@ -13,6 +13,11 @@
   color: white;
 }
 
+#usernameP{
+  color: white;
+  font-size: 18px;
+  margin-right: 10px;
+}
 
 body {
   font-size: .875rem;
@@ -112,8 +117,4 @@ body {
 .form-control-dark:focus {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
-}
-
-form{
-  margin-left: 50px;
 }

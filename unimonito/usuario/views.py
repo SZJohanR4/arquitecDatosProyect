@@ -10,7 +10,6 @@ from django.contrib.auth.models import User
 def index(request):
     return render(request,'index.html',{"form":loginForm})
 
-
 def login(request):
     login=loginForm(request.POST or None)
     if login.is_valid():
@@ -21,9 +20,14 @@ def login(request):
         if user is not None and user.is_active:
             auth.login(request, user)
             print(user.is_superuser)
-            return HttpResponseRedirect('/index')
-            #return render(request,'index.html',{"sesion":user})
+            return HttpResponseRedirect('home')
         else:
             fail="Datos Incorrectos"
             return render(request,'index.html',{"form":login, "fail":fail})
     return render(request,'index.html',{"form":login})
+
+@login_required(login_url='/unimonito')
+def home(request):
+    sesion=request.user
+    print(sesion)
+    return render(request,'home.html',{"username":sesion})
