@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import getClienteFORM, getProductoFORM
+from .forms import getClienteFORM, getProductoFORM, nuevaRecetaForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -47,7 +47,7 @@ def productoDetail(request, cliente_id,producto_id):
     producto = Productos.objects.get(pk=producto_id)
     cliente=Clientes.objects.get(pk=cliente_id)
     form = getProductoFORM(initial={'nombre_Producto': producto.Nombre,'fecha_Consumo': producto.Fecha_Consumo,'observacion': producto.Observacion,'precio': producto.Precion_Consumo,})
-    return render(request,'productoDetail.html',{"getCliente":getClienteFORM,"username":sesion,"producto":producto,"getProductoFORM":form,"cliente":cliente})
+    return render(request,'productoDetail.html',{"getCliente":getClienteFORM,"username":sesion,"producto":producto,"getProductoFORM":form,"cliente":cliente,"nuevaRecetaForm":nuevaRecetaForm})
 
 def recetaDetail(request, receta_id):
     sesion=request.user
@@ -65,3 +65,39 @@ def comprar(request, cliente_id, producto_id_compra):
     factura.idProductos=producto
     factura.save()
     return HttpResponseRedirect('/unimonito/home')
+
+def crearReceta(request, cliente_id, receta_id_compra):
+    sesion=request.user
+    now = datetime.datetime.now()
+    producto = Productos.objects.get(pk=receta_id_compra)
+    cliente=Clientes.objects.get(pk=cliente_id)
+    factura=Facturas()
+    factura.Fecha_Factura=now
+    factura.idClientes=cliente
+    factura.idProductos=producto
+    factura.save()
+    recetaNewForm=nuevaRecetaForm(request.POST or None)
+    print(recetaNewForm.is_valid())
+    if recetaNewForm.is_valid():
+        datos=recetaNewForm.cleaned_data
+        receta = Recetas()
+        receta.Nombre=datos.get('nombre_Receta')
+        receta.ingrediente1=datos.get('ingrediente1')
+        receta.cant_ingrediente1=datos.get('cantidad1')
+        receta.ingrediente2=datos.get('ingrediente2')
+        receta.cant_ingrediente2=datos.get('cantidad2')
+        receta.ingrediente3=datos.get('ingrediente3')
+        receta.cant_ingrediente3=datos.get('cantidad3')
+        receta.preparacion=datos.get('preparacion')
+        receta.idClientes=cliente
+        receta.idProductos=producto
+        receta.save()
+    return HttpResponseRedirect('/unimonito/home')
+"""    now = datetime.datetime.now()
+    producto = Productos.objects.get(pk=producto_id_compra)
+    cliente=Clientes.objects.get(pk=cliente_id)
+    factura=Facturas()
+    factura.Fecha_Factura=now
+    factura.idClientes=cliente
+    factura.idProductos=producto
+    factura.save()"""
