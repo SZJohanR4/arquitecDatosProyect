@@ -42,9 +42,12 @@ class Recetas(models.Model):
     def __str__(self):
         return self.Nombre
 
-class Clientes_Productos(models.Model):
+class Facturas(models.Model):
+    Fecha_Factura=models.CharField(max_length=50)
     idClientes=models.ForeignKey(Clientes, on_delete=models.CASCADE)
     idProductos=models.ForeignKey(Productos, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.Fecha_Factura
 
 class Productos_Franquicia(models.Model):
     idProductos=models.ForeignKey(Productos, on_delete=models.CASCADE)

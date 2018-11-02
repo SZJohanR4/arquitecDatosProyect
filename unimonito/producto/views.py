@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from .forms import getClienteFORM
+from .forms import getClienteFORM, getProductoFORM
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 
 from usuario.models import Clientes, Empleados
-from .models import Recetas, Productos
+from .models import Recetas, Productos, Facturas
+import datetime
 
 
 def pedidos(request):
@@ -15,7 +16,6 @@ def pedidos(request):
 
 def verifCliente(request):
     sesion=request.user
-    recetasList=Recetas.objects.all()
     clienteForm=getClienteFORM(request.POST or None)
     if clienteForm.is_valid():
         datos=clienteForm.cleaned_data
@@ -30,10 +30,8 @@ def verifCliente(request):
             cliente.Cedula=cedulaUsuario
             cliente.Ciudad=ciudad
             cliente.save()
-        else:#se agrega a la bd y se muestra el formulario para pedir producto
-            cliente=Clientes.objects.get(Cedula=cedulaUsuario)
-            print(cliente)
-            recetasList=Recetas.objects.filter(idClientes=cliente)
+    cliente=Clientes.objects.get(Cedula=cedulaUsuario)
+    recetasList=Recetas.objects.filter(idClientes=cliente)
     productoList=Productos.objects.all()
     context = {
         'sesion':sesion,
@@ -41,15 +39,29 @@ def verifCliente(request):
         'recetasList':recetasList,
         'getCliente':getClienteFORM
     }
-    return render(request,'pedidos.html',{"getCliente":getClienteFORM,"username":sesion,"productoList":productoList,"recetasList":recetasList})
+    return render(request,'pedidos.html',{"getCliente":getClienteFORM,"username":sesion,"productoList":productoList,"recetasList":recetasList,"cliente":cliente})
 
 
-def productoDetail(request, producto_id):
+def productoDetail(request, cliente_id,producto_id):
     sesion=request.user
     producto = Productos.objects.get(pk=producto_id)
-    return render(request,'productoDetail.html',{"getCliente":getClienteFORM,"username":sesion,"producto":producto})
+    cliente=Clientes.objects.get(pk=cliente_id)
+    form = getProductoFORM(initial={'nombre_Producto': producto.Nombre,'fecha_Consumo': producto.Fecha_Consumo,'observacion': producto.Observacion,'precio': producto.Precion_Consumo,})
+    return render(request,'productoDetail.html',{"getCliente":getClienteFORM,"username":sesion,"producto":producto,"getProductoFORM":form,"cliente":cliente})
 
 def recetaDetail(request, receta_id):
     sesion=request.user
     receta = Recetas.objects.get(pk=receta_id)
     return render(request,'recetaDetail.html',{"getCliente":getClienteFORM,"username":sesion,"receta":receta})
+
+def comprar(request, cliente_id, producto_id_compra):
+    sesion=request.user
+    now = datetime.datetime.now()
+    producto = Productos.objects.get(pk=producto_id_compra)
+    cliente=Clientes.objects.get(pk=cliente_id)
+    factura=Facturas()
+    factura.Fecha_Factura=now
+    factura.idClientes=cliente
+    factura.idProductos=producto
+    factura.save()
+    return HttpResponseRedirect('/unimonito/home')

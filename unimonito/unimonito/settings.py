@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'unimonitodb',
         'USER': 'postgres',
-        'PASSWORD': 'maribel27',
+        'PASSWORD': 'uniminuto',
         'HOST':'127.0.0.1',
         'PORT': 5432,
     },

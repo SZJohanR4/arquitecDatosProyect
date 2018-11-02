@@ -35,7 +35,7 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="franquicias">Franquicias</a>
+              <a class="nav-link" href="unimonito/franquicias">Franquicias</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="usuarios">Usuarios</a>
@@ -103,13 +103,19 @@
         <br>
         <br>
         <div class="container">
+            <div class="row">
+              {% if cliente %}
+              <h1>{{cliente.Nombre}}</h1>
+              {% endif %}
+            </div>
+            <br>
           <div class="row">
           {% if productoList %}
           <br>
           <ul class="list-group col-md-4">
             <li class="list-group-item"><h3>Productos</h3></li>
             {% for producto in productoList %}
-            <li class="list-group-item"><a href="producto/{{producto.id}}">{{  producto.Nombre }}</a></li>
+            <li class="list-group-item"><a href="producto/{{cliente.id}}/{{producto.id}}">{{  producto.Nombre }}</a></li>
              {% endfor %}
           </ul>
             {% endif %}
@@ -121,6 +127,10 @@
               {% for receta in recetasList %}
               <li class="list-group-item"><a href="receta/{{receta.id}}">{{ receta.Nombre }}</a></li>
                {% endfor %}
+            </ul>
+            {% else %}
+            <ul class="list-group col-md-4">
+              <li class="list-group-item"><h3>Cliente sin recetas</h3></li>
             </ul>
               {% endif %}
             </div>

@@ -35,7 +35,7 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="franquicias">Franquicias</a>
+              <a class="nav-link" href="/unimonito/franquicias/">Franquicias</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="usuarios">Usuarios</a>
@@ -76,16 +76,58 @@
       <br>
       <br>
         <div class="container">
-          <ul class="list-group col-md-6">
-            <li class="list-group-item"><h3>Productos</h3></li>
-            <li class="list-group-item"><b>Nombre: </b>{{  producto.Nombre }}</li>
-            <li class="list-group-item"><b>Fecha Consumo: </b>{{  producto.Fecha_Consumo }}</li>
-            <li class="list-group-item"><b>Observacion: </b>{{  producto.Observacion }}</li>
-            <li class="list-group-item"><b>Precio: </b>{{  producto.Precion_Consumo }}</li>
-          </ul>
-          <button type="submit" class="btn btn-primary form-control">Buscar</button>
-        </div>
+          <div class="row">
+            <div class="col-md-12">
 
+                <div class="form">
+                <form action="comprarProducto/{{ producto.id }}" method="post">
+                <ul class="list-group col-md-12">
+                  {% csrf_token %}
+                  <li class="list-group-item"><h3>Productos</h3></li>
+                  <li class="list-group-item"><b>Nombre: </b>{{getProductoFORM.nombre_Producto}}</li>
+                  <li class="list-group-item"><b>Fecha Consumo: </b>{{getProductoFORM.fecha_Consumo}}</li>
+                  <li class="list-group-item"><b>Observacion: </b>{{getProductoFORM.observacion}}</li>
+                  <li class="list-group-item"><b>Precio: </b>{{getProductoFORM.precio}}</li>
+                </ul>
+                <br>
+                <div class="row">
+                <div class="form-group col-md-3">
+                  <button type="submit" class="btn btn-success form-control">Comprar</button>
+                </div>
+                <div class="form-group col-md-3">
+                <button type="button" class="btn btn-success form-control" onclick="showModal()">Crear Receta</button>
+                </div>
+              </div>
+              </form>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Crear Receta</h5>
+                      </div>
+                      <div class="modal-body">
+                         <form method="POST" action="crearReceta">
+                          {% csrf_token %}
+                            <div class="form-group">
+                              <label for="usuario">Usuario:</label>
+                              {{form.user_name}}
+                            </div>
+                            <div class="form-group">
+                              <label for="password">Contraseña:</label>
+                              {{form.password}}
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Ingresar">
+                            </div>
+                        </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
 
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
