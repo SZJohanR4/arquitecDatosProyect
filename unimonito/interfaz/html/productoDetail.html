@@ -76,55 +76,17 @@
       <br>
       <br>
         <div class="container">
-          <form method="post" action="verifCliente">
-            <div class="form-row">
-              {% csrf_token %}
-              <div class="form-group col-md-4">
-                {{getCliente.nombre_Usuario}}
-              </div>
-              <div class="form-group col-md-4">
-                {{getCliente.cedula_Usuario}}
-              </div>
-              <div class="form-group col-md-4">
-                {{getCliente.ciudad_Usuario}}
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-5">
-              </div>
-              <div class="form-group col-md-2">
-                <button type="submit" class="btn btn-primary form-control">Buscar</button>
-              </div>
-              <div class="form-group col-md-5">
-              </div>
-            </div>
-          </form>
-        </div>
-        <br>
-        <br>
-        <div class="container">
-          <div class="row">
-          {% if productoList %}
-          <br>
-          <ul class="list-group col-md-4">
+          <ul class="list-group col-md-6">
             <li class="list-group-item"><h3>Productos</h3></li>
-            {% for producto in productoList %}
-            <li class="list-group-item"><a href="producto/{{producto.id}}">{{  producto.Nombre }}</a></li>
-             {% endfor %}
+            <li class="list-group-item"><b>Nombre: </b>{{  producto.Nombre }}</li>
+            <li class="list-group-item"><b>Fecha Consumo: </b>{{  producto.Fecha_Consumo }}</li>
+            <li class="list-group-item"><b>Observacion: </b>{{  producto.Observacion }}</li>
+            <li class="list-group-item"><b>Precio: </b>{{  producto.Precion_Consumo }}</li>
           </ul>
-            {% endif %}
-
-            {% if recetasList %}
-            <br>
-            <ul class="list-group col-md-4">
-              <li class="list-group-item"><h3>Recetas</h3></li>
-              {% for receta in recetasList %}
-              <li class="list-group-item"><a href="receta/{{receta.id}}">{{ receta.Nombre }}</a></li>
-               {% endfor %}
-            </ul>
-              {% endif %}
-            </div>
+          <button type="submit" class="btn btn-primary form-control">Buscar</button>
         </div>
+
+
 
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
            <div class="row">
