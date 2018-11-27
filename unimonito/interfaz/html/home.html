@@ -70,6 +70,38 @@
         </div>
       </nav>
     </header>
+{% if factura %}
+<script type="text/javascript">
+    $(document).ready(function(){
+    $("#myModal").modal('show');
+});
+</script>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Factura Nro: {{factura.id}}</h5>
+                    </div>
+                    <div class="modal-body">
+                       <table>
+                         <tr>
+                           <td>Nombre: </td>
+                           <td>{{producto.Nombre}}</td>
+                         </tr>
+                         <tr>
+                           <td>Precio: </td>
+                           <td>{{producto.Precion_Consumo}}</td>
+                         </tr>
+                         <tr>
+                           <td>Fecha: </td>
+                           <td>{{producto.Fecha_Compra}}</td>
+                         </tr>
+                       </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endif %}
     <main role="main">
       <div class="jumbotron">
         <div class="container">

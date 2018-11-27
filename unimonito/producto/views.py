@@ -64,7 +64,8 @@ def comprar(request, cliente_id, producto_id_compra):
     factura.idClientes=cliente
     factura.idProductos=producto
     factura.save()
-    return HttpResponseRedirect('/unimonito/home')
+    return render(request,'home.html',{"factura":factura,"username":sesion,"producto":producto})
+
 
 def crearReceta(request, cliente_id, receta_id_compra):
     sesion=request.user
